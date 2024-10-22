@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('item_name');
             $table->float('price');
             $table->text('description')->nullable();
+            $table->string('image');
         });
     }
 

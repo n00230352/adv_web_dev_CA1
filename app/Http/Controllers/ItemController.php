@@ -12,7 +12,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all(); // gets all items
+        return view('items.index', compact('items')); // returns the view with items
     }
 
     /**
@@ -36,7 +37,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        //
+        return view('items.show')->with('item', $item);
     }
 
     /**
