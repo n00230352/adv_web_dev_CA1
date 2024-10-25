@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -17,7 +20,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-    Route::get('/items/{item}', [ItemComtroller::class, 'show'])->name('items.show');
+    Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+    Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
+    Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+
 
 });
 
