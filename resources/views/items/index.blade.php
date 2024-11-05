@@ -24,6 +24,11 @@
                                 :description="$item->description"
                             />
                         </a>
+
+                        {{-- edit  and delete button --}}
+                        <div class="mt-4 flex space-x-2">
+
+                            
                         @endforeach
                     </div>
                 </div>
