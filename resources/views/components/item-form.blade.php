@@ -1,4 +1,4 @@
-@props(['action', 'method'])
+@props(['action', 'method', 'item'])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
 @csrf
@@ -22,30 +22,25 @@
 </div>
 
 <div class="mb-4">
-    <labelfor="image"class="block text-sm font-medium text-gray-700">Item Image </label>
+    <labelfor="item_name"class="block text-sm font-medium text-gray-700">Item Name </label>
     <input
-        type="file"
-        name="image"
-        id="image"
-        {{isset($item) ?'' : 'required' }}
+        type="text"
+        name="item_name"
+        id="item_name"
+        value="{{ old('item_name', $item->item_name ?? '') }}"
+        required
         class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-
         500 focus:border-indigo-500" />
 
-    @error('image')
-        <p class="text-sm text-red-600">{f $message }</p>
-    @enderror
-</div>
-
-@isset($item->image)
+    @error('item_name')
         <div class="mb-4">
-        <img src="{{asset($book->image)}}" alt="Item picture" class="w-24 h-32 object-cover">
-    </div>
-@endisset
+            <img src="{{asset( 'images/items/'. $item->image)}}" alt="$item->item_name" class="w-24 h-32 object cover">
+        </div>
+    @endisset
 
-<div>
+    <div>
     <x-primary-button>
-        {{ isset($item)? 'Update Item' : 'Add Item'}}
-    </x-primary-button>
+        {{ isset($item) ? 'Update Item' : 'Add Item '}}
 </div>
 </form>
 

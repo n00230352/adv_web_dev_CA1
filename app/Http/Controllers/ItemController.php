@@ -70,7 +70,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return view('items.edit')->with('item', $item);
     }
 
     /**
@@ -78,8 +78,13 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
-    }
+        $request->validate([
+            'item_name' => 'required',
+            'price' => 'required|double',
+            'description' => 'required|max:500',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        }
 
     /**
      * Remove the specified resource from storage.
@@ -89,3 +94,4 @@ class ItemController extends Controller
         //
     }
 }
+

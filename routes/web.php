@@ -23,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
     Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
     Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+    Route::get('/items/edit', [ItemController::class, 'edit'])->name('items.edit');
+    
+
 
 
 });
