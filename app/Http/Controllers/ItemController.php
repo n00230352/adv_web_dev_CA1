@@ -102,7 +102,7 @@ class ItemController extends Controller
         }
 
         $item->update($data);
-        return redirect()->route('items.index')->with('success', 'UItem updated successfully');
+        return redirect()->route('items.index')->with('success', 'Item updated successfully');
     }
 
     /**
