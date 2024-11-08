@@ -15,6 +15,6 @@ class Item extends Model
         'description',
         'image',
         'created_at',
-        'uploaded_at',
+        'updated_at'
     ];
 }

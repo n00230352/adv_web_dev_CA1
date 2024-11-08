@@ -33,7 +33,7 @@ class ItemController extends Controller
         //validate input
         $request->validate([
             'item_name' => 'required',
-            'price' => 'required|double',
+            'price' => 'required|integer',
             'description' => 'required|max:500',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -80,18 +80,48 @@ class ItemController extends Controller
     {
         $request->validate([
             'item_name' => 'required',
-            'price' => 'required|double',
+            'price' => 'required|integer',
             'description' => 'required|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+
+        $data = $request->only(['item_name', 'price', 'description', 'image']);
+
+        // Check if a new image file is provided
+        if ($request->hasFile('image')) {
+            // If there's an old image, delete it from the server
+            if ($item->image && file_exists(public_path($item->image))) {
+                unlink(public_path($item->image));
+            }
+
+            // Store the new image and add its filename to the data array
+            $image_url = time() . '.' . $request->file('image')->extension();
+            $request->file('image_url')->move(public_path('images/items'), $image_url);
+            $data['image'] = $image_url;
         }
+
+        $item->update($data);
+        return redirect()->route('items.index')->with('success', 'UItem updated successfully');
+    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return to_route('items.index')->with('success', 'Item deleted successfully!');
+
+        // if($deleted){
+        //     return to_route('items.index')->with('success', 'Item deleted successfully!');
+        // }
+        // else{
+        //     return to_route('items.index')->with('danger', 'Deleted failed!');
+        // }
+
+
     }
 }
 

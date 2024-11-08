@@ -12,9 +12,9 @@
                     <h3 class="font-semibold text-lg mb-4">Add a New Item:</h3>
 
 
-                    <x-items-form
+                    <x-item-form
                         :action="route('items.store')"
-                        :method="'POST";
+                        :method="'POST'"
                     />
 
                 </div>

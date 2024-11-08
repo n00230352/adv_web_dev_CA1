@@ -19,15 +19,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // get all
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+
+    // view form
     Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
-    Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
+    // saves
     Route::post('/items', [ItemController::class, 'store'])->name('items.store');
-    Route::get('/items/edit', [ItemController::class, 'edit'])->name('items.edit');
-    
 
+    // bring us to the edit form
+    Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');
 
+    Route::put('/items/{item}', [ItemController::class, 'update'])->name('items.update');
 
+    Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
+
+    Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
 });
 
 require __DIR__.'/auth.php';
