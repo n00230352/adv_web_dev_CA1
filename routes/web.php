@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
     // get all
     Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+    Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');});
 
     // view form
     Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
@@ -36,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
 
     Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
-});
+
+    // Search Route
 
 require __DIR__.'/auth.php';

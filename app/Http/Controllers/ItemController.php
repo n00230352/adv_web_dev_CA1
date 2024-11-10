@@ -114,14 +114,24 @@ class ItemController extends Controller
 
         return to_route('items.index')->with('success', 'Item deleted successfully!');
 
-        // if($deleted){
-        //     return to_route('items.index')->with('success', 'Item deleted successfully!');
-        // }
-        // else{
-        //     return to_route('items.index')->with('danger', 'Deleted failed!');
-        // }
-
-
     }
+    public function search(Request $request)
+{
+    $search = $request->input('search'); // Get search query from the form
+
+    // If there's a search query, filter items based on item_name or description
+    if ($search) {
+        $items = Item::where('item_name', 'LIKE', "%{$search}%")
+                     ->orWhere('description', 'LIKE', "%{$search}%")
+                     ->get();
+    } else {
+        // If no query, return all items
+        $items = Item::all();
+    }
+
+    // Return the same view with the filtered items and query
+    return view('items.index', compact('items', 'search'));
+}
+
 }
 
