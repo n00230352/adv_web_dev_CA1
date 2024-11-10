@@ -4,6 +4,9 @@
             <h2 class="text-3xl font-extrabold text-gray-100 leading-tight">
                 {{ __('All Items') }}
             </h2>
+            <p class="text-gray-300 mt-2">
+                Explore our collection of items below.
+            </p>
 
             <!-- Search Bar -->
             <form action="{{ route('items.search') }}" method="GET" class="mt-4">

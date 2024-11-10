@@ -55,15 +55,19 @@
     </div>
 
     <div class="mb-4">
-        <label for="description"class="block text-sm font-medium text-gray-700">Description</label>
+        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
         <textarea
             name="description"
             id="description"
             required
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-
-            500 focus:border-indigo-500"
-        >
-    </textarea>
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        >{{ old('description', $item->description ?? '') }}</textarea>
+
+        @error('description')
+            <p class="text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
 
         @error('description')
         <p class='text-sm text-red-600'>{{ $message}}</p>
