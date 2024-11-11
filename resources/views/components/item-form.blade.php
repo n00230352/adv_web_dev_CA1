@@ -1,12 +1,13 @@
 @props(['action', 'method', 'item'])
 
+<!-- Start the form -->
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
 
     @csrf
     @if($method === 'PUT' || $method === 'PATCH')
         @method($method)
     @endif
-
+    <!-- Show any error messages -->
     <div class="mb-4">
 
         @if ($errors->any())
@@ -19,7 +20,7 @@
             </div>
         @endif
 
-
+        <!-- Input for item name -->
         <label for="item_name"class="block text-sm font-medium text-gray-700">Item Name </label>
         <input
             type="text"
@@ -36,6 +37,7 @@
         @enderror
     </div>
 
+    <!-- Input for item name -->
     <div class="mb-4">
         <label for="price"class="block text-sm font-medium text-gray-700">Price</label>
         <input
@@ -54,6 +56,7 @@
         @enderror
     </div>
 
+    <!-- Input for item description -->
     <div class="mb-4">
         <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
         <textarea
@@ -74,6 +77,7 @@
         @enderror
     </div>
 
+    <!-- Input for item image -->
     <div class="mb-4">
         <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
         <input type="file" name="image" id="image" {{ isset($item) ? '' : 'required' }}
@@ -83,13 +87,14 @@
         @enderror
     </div>
 
-
+        <!-- Show current image if editing an item -->
         @isset($item->image)
             <div class="mb-4">
                 <img src="{{asset( 'images/items/'  . $item->image)}}" alt="{{$item->item_name}}" class="w-24 h-32 object cover">
             </div>
         @endisset
 
+         <!-- Button to add or update the item -->
         <div>
             <x-primary-button>
                 {{ isset($item) ? 'Update Item' : 'Add Item '}}
