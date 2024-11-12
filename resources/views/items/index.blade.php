@@ -53,20 +53,22 @@
                                 </a>
 
                                 <!-- Edit and Delete buttons at the bottom of the card -->
-                                <div class="mt-auto space-x-2 flex justify-between">
-                                    <a href="{{ route('items.edit', $item) }}" class="text-gray-700 border border-gray-400 hover:bg-gray-300 font-bold py-2 px-4 rounded">
-                                        Edit
-                                    </a>
+                                @if(auth()->user()->role === 'admin')
+                                    <div class="mt-auto space-x-2 flex justify-between">
+                                        <a href="{{ route('items.edit', $item) }}" class="text-gray-700 border border-gray-400 hover:bg-gray-300 font-bold py-2 px-4 rounded">
+                                            Edit
+                                        </a>
 
-                                    <!-- Delete form with confirmation -->
-                                    <form action="{{ route('items.destroy', $item) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </div>
+                                        <!-- Delete form with confirmation -->
+                                        <form action="{{ route('items.destroy', $item) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                         @empty
                             <!-- Message if no items are found -->

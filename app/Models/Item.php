@@ -9,13 +9,18 @@ class Item extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $fillable = [
         'item_name',
         'price',
         'description',
         'image',
+        'created_at',
+        'updated_at',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
 

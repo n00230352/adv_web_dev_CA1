@@ -39,4 +39,8 @@ Route::middleware('auth')->group(function () {
     // Delete an item
     Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
 
+    //creates all routes for reviews
+    Route::resource('reviews', ReviewController::class);
+    Route::post('items/{item}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
 require __DIR__.'/auth.php';

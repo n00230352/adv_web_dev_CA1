@@ -22,6 +22,9 @@ class ItemController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('items.index')->with('error', 'Access denied.');
+        }
         return view('items.create');
     }
 
@@ -62,7 +65,11 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('items.show')->with('item', $item);
+        //load the item with its associated reviews and the user who made each review
+        $item->load('reviews.user'); //assuming each review has a 'user_id' for the review
+        return view('items.show', compact('book'));
+        // compact is shorthand for this
+        //return view('items.show'), ['item' => $item]);
     }
 
     /**
