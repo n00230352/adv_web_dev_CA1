@@ -44,4 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('reviews', ReviewController::class);
     Route::post('items/{item}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
+    //editing and updating reviews
+    Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+    Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+
 require __DIR__.'/auth.php';

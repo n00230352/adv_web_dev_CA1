@@ -58,7 +58,7 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        //
+        return view('review.edit')->with('item', $item);
     }
 
     /**
@@ -66,7 +66,21 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-        //
+        // Validation
+        $request->validate([
+            'review_text' => 'required|string|max:1000',
+            'rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        // Update the review
+        $review->update([
+            'review_text' => $request->review_text,
+            'rating' => $request->rating,
+        ]);
+
+        // Redirect back with success message
+        return redirect()->route('items.show', $review->item_id)
+                        ->with('success', 'Review updated successfully!');
     }
 
     /**
