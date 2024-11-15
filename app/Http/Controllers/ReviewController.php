@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -26,14 +27,14 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Item $item)
     {
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'nullable|string|max:1000',
         ]);
 
-        //create the review associated with the book and user
+        //create the review associated with the item and user
         $item->reviews()->create([
             'user_id' => auth()->id(),
             'rating' => $request->input('rating'),

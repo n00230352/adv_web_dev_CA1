@@ -6,9 +6,9 @@
     {{-- item name --}}
     <h1 class="font-bold text-black-600 mb-2" style="font-size: 3rem;">{{$item_name}}</h1>
 
-    {{-- book cover image --}}
+    {{-- item cover image --}}
     <div class="overflow-hidden rounded-lg mb-4 flex justify-centrer"> {{-- image smaller size --}}
-         <img src="{{ asset('images/items/' . $image) }}" alt="{{ $title}}" class="w-fully max-w-xs h-auto object-cover">{{--image max-w-xs (20erm) and ensure responsiveness  --}}
+         <img src="{{ asset('images/items/' . $image) }}" alt="{{ $item_name}}" class="w-fully max-w-xs h-auto object-cover">{{--image max-w-xs (20erm) and ensure responsiveness  --}}
     </div>
 
     {{-- price --}}

@@ -67,7 +67,7 @@ class ItemController extends Controller
     {
         //load the item with its associated reviews and the user who made each review
         $item->load('reviews.user'); //assuming each review has a 'user_id' for the review
-        return view('items.show', compact('book'));
+        return view('items.show', compact('item'));
         // compact is shorthand for this
         //return view('items.show'), ['item' => $item]);
     }

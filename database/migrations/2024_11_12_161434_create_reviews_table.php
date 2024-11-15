@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            //cascade here means if book is deleted so will the reviews
+            //cascade here means if item is deleted so will the reviews
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
             // cascade- if the useer is deleted so are their reviews
             $table->foreignId('user_id')->constrained()->oneDelete('cascade');

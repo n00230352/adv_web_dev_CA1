@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden sahdow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <!-- Section title for form -->
+                    <!-- Section item_name for form -->
                     <h3 class="font-semibold text-lg mb-4">Add a New Item:</h3>
 
                     <!-- Item form component with action and method props -->
