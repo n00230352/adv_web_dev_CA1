@@ -58,7 +58,11 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        return view('review.edit')->with('item', $item);
+        // check is user is admin or owner
+        if (auth()->user()->id !== $review->user_id && auth()->user()->role !== 'admin') {
+            return redirect()->route('items.index')->with('error', 'Access denied.');
+        }
+        return view('review.edit', compact('review'));
     }
 
     /**
@@ -67,10 +71,12 @@ class ReviewController extends Controller
     public function update(Request $request, Review $review)
     {
         // Validation
-        $request->validate([
-            'review_text' => 'required|string|max:1000',
-            'rating' => 'required|integer|min:1|max:5',
-        ]);
+        //check to make sure the user is authorised to update the content
+        $review->update($request->only(['rating', 'comment']));
+
+        //when updated in DB, redirect somewhere that makes sense in the application
+        return redirect()->route('items.show', $review->item_id)
+                         ->with('success', 'Review update successfully');
 
         // Update the review
         $review->update([
