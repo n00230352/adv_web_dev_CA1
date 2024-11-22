@@ -62,7 +62,7 @@ class ReviewController extends Controller
         if (auth()->user()->id !== $review->user_id && auth()->user()->role !== 'admin') {
             return redirect()->route('items.index')->with('error', 'Access denied.');
         }
-        return view('review.edit', compact('review'));
+        return view('reviews.edit', compact('review'));
     }
 
     /**
@@ -94,6 +94,16 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+            // Check if the user is the owner of the review or an admin
+            if (auth()->user()->id !== $review->user_id && auth()->user()->role !== 'admin') {
+                return redirect()->route('items.index')->with('error', 'Access denied.');
+            }
+
+            // Delete the review
+            $review->delete();
+
+            // Redirect to the item page with a success message
+            return redirect()->route('items.show', $review->item_id)
+                             ->with('success', 'Review deleted successfully.');
     }
 }

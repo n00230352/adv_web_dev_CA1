@@ -39,7 +39,7 @@
                                             @csrf
                                             @method('delete')
                                             <x-danger-button :href="route('reviews.destroy', $review)"
-                                                                onclick="event.preventDefault(); this.closet('form').submit();">
+                                                                onclick="event.preventDefault(); this.closest('form').submit();">
                                                 {{ __('Delete Review') }}
                                             </x-danger-button>
                                         </form>
