@@ -44,4 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('reviews', ReviewController::class);
     Route::post('items/{item}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
+    Route::resource('category', CategoryController::class)->middleware('auth');
+
 require __DIR__.'/auth.php';
