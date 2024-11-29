@@ -12,11 +12,11 @@
             <div class="bg-white overflow-hidden sahdow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <!-- Section item_name for form -->
-                    <h3 class="font-semibold text-lg mb-4">Add a New Item:</h3>
+                    <h3 class="font-semibold text-lg mb-4">Add a New Category:</h3>
 
                     <!-- Item form component with action and method props -->
-                    <x-item-form
-                        :action="route('items.store')"
+                    <x-category-form
+                        :action="route('categories.store')"
                         :method="'POST'"
                     />
 

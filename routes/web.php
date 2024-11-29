@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,9 +23,14 @@ Route::middleware('auth')->group(function () {
 
     // Get all
     // Search Route
-    Route::get('/items', [ItemController::class, 'index'])->name('items.index');
-    Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');});
 
+
+});
+
+Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+
+
+Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');
     // View form to create new item
     Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
 
@@ -45,5 +52,15 @@ Route::middleware('auth')->group(function () {
     Route::post('items/{item}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
     Route::resource('category', CategoryController::class)->middleware('auth');
+
+    //save new category
+     // Save new item
+     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+     Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
+
+      // Show a single item
+    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+
 
 require __DIR__.'/auth.php';

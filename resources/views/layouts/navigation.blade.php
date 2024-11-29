@@ -15,13 +15,22 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
                     <x-nav-link :href="route('items.index')" :active="request()->routeIs('items.index')">
                         {{ __('View All Items') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                        {{ __('View All Categories') }}
                     </x-nav-link>
 
                     @if(auth()->user()->role === 'admin')
                     <x-nav-link :href="route('items.create')" :active="request()->routeIs('items.create')">
                         {{ __('Create new item') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                        {{ __('Create New Category') }}
                     </x-nav-link>
                     @endif
 
