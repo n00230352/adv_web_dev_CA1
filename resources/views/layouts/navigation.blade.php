@@ -20,7 +20,7 @@
                         {{ __('View All Items') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                    <x-nav-link :href="route('categories.index')" >
                         {{ __('View All Categories') }}
                     </x-nav-link>
 
@@ -29,7 +29,7 @@
                         {{ __('Create new item') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                    <x-nav-link :href="route('categories.create')" :active="request()->routeIs('categories.create')">
                         {{ __('Create New Category') }}
                     </x-nav-link>
                     @endif

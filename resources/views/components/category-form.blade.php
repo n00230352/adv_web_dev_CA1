@@ -21,7 +21,7 @@
         @endif
 
         <!-- Input for item name -->
-        <label for="item_name"class="block text-sm font-medium text-gray-700">Category Name </label>
+        <label for="item_name" class="block text-sm font-medium text-gray-700">Category Name </label>
         <input
             type="text"
             name="category_name"

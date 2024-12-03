@@ -14,6 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
         $categories = Category::with('items')->get();
         return view('categories.index', compact('categories'));
     }
@@ -25,8 +26,8 @@ class CategoryController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->role !=='admin') {
-            return redirect()->route('items.index')-> with('error', 'Access denied');
+        if ($user->role !== 'admin') {
+            return redirect()->route('items.index')->with('error', 'Access denied');
         }
 
         $items = Item::all();
@@ -46,11 +47,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //Fetch all authors from the database
-        $category = Category::all();
 
         // Pass the authors to the 'authors.index' view
-        return view('category.index', compact('category'));
+        return view('categories.show', compact('category'));
     }
 
     /**

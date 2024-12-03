@@ -31,36 +31,43 @@ Route::get('/items', [ItemController::class, 'index'])->name('items.index');
 
 
 Route::get('/items/search', [ItemController::class, 'search'])->name('items.search');
-    // View form to create new item
-    Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
+// View form to create new item
+Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
 
-    // Save new item
-    Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+// Save new item
+Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 
-    // Edit an existing item
-    Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');
-    Route::put('/items/{item}', [ItemController::class, 'update'])->name('items.update');
+// Edit an existing item
+Route::get('/items/{item}/edit', [ItemController::class, 'edit'])->name('items.edit');
+Route::put('/items/{item}', [ItemController::class, 'update'])->name('items.update');
 
-    // Show a single item
-    Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
+// Show a single item
+Route::get('/items/{item}', [ItemController::class, 'show'])->name('items.show');
 
-    // Delete an item
-    Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
+// Delete an item
+Route::delete('/items/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
 
-    //creates all routes for reviews
-    Route::resource('reviews', ReviewController::class);
-    Route::post('items/{item}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+//creates all routes for reviews
+Route::resource('reviews', ReviewController::class);
+Route::post('items/{item}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
-    Route::resource('category', CategoryController::class)->middleware('auth');
+Route::resource('categories', CategoryController::class)->middleware('auth');
 
-    //save new category
-     // Save new item
-     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-
-     Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
-
-      // Show a single item
-    Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 
-require __DIR__.'/auth.php';
+
+// Edit an existing item
+Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+
+//save new category
+// Save new item
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
+
+// Show a single item
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+
+
+require __DIR__ . '/auth.php';
