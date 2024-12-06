@@ -39,8 +39,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //validate input
+         $request->validate([
+            'category_name' => 'required',
+            'description' => 'required|max:500',
+        ]);
+
+        //create category in database
+        Category::create([
+            'category_name' => $request->category_name,
+            'description' => $request->description,
+            'created_at' => now(),
+            'updated_at' =>now()
+        ]);
+
+        return to_route('category.index')->with('success', 'category created successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -57,7 +72,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -65,7 +80,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'category_name' => 'required',
+            'description' => 'required|max:500',
+        ]);
+
+        $data = $request->only(['category_name', 'description']);
     }
 
     /**

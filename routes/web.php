@@ -66,6 +66,13 @@ Route::post('/categories', [CategoryController::class, 'store'])->name('categori
 
 Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
 
+// Save new item
+Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+// Edit an existing category
+Route::get('/categories/{categoroy}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+
 // Show a single item
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 

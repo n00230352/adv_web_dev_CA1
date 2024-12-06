@@ -40,8 +40,7 @@
                     <!-- Display grid of item cards -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach ($items as $item)
-                            <div
-                                class="bg-gray-50 border border-gray-300 p-4 rounded-lg shadow-sm flex flex-col h-full">
+                        <div class="bg-gray-50 border border-gray-300 p-4 rounded-lg shadow-sm flex flex-col h-full">
                                 <!-- Item Card Content -->
                                 <a href="{{ route('items.show', $item) }}">
                                     <x-item-card :item_name="$item->item_name" :image="$item->image" :price="$item->price" :description="$item->description"
@@ -55,9 +54,10 @@
                                             class="text-gray-700 border border-gray-400 hover:bg-gray-300 font-bold py-2 px-4 rounded">
                                             Edit
                                         </a>
+                                   
 
-                                        <!-- Delete form with confirmation -->
-                                        <form action="{{ route('items.destroy', $item) }}" method="POST"
+                                    <!-- Delete form with confirmation -->
+                                    <form action="{{ route('items.destroy', $item) }}" method="POST"
                                             onsubmit="return confirm('Are you sure you want to delete this item?')">
                                             @csrf
                                             @method('DELETE')
@@ -65,15 +65,19 @@
                                                 class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
                                                 Delete
                                             </button>
-                                        </form>
-                                    </div>
+                                    </form>
+                                </div>
                                 @endif
-                            </div>
-                            @empty
+
+                        </div>
+                        @endforeach
+
+                                 
+                
+                        {{-- @empty
                             <!-- Message if no items are found -->
                             <p class="text-gray-600">No items found matching "{{ $query }}"</p>
-                            @endempty
-                        @endforeach
+                        @endempty --}}
                     </div>
                 </div>
             </div>
