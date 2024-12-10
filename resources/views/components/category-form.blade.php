@@ -1,4 +1,4 @@
-@props(['action', 'method', 'category'])
+@props(['action', 'method', 'category', 'items','categoryItems'])
 
 <!-- Start the form -->
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
@@ -57,6 +57,17 @@
         <p class='text-sm text-red-600'>{{ $message}}</p>
         @enderror
     </div>
+
+    <h3 class="font-semibold text-lg mb-4 pt-5">Assign this category to existing items</h3>
+        <div>
+            @foreach ($items as $item)
+            <div>
+                <input type="checkbox" id="item_{{ $item->id }}" name="items[]" value="{{ $item->id }}"
+                @if(isset($categoryItems) && in_array($item->id, $categoryItems)) checked @endif>
+                <label for="item_{{ $item->id }}" class="ml-2">{{$item->item_name}}</label>
+            </div>
+            @endforeach
+        </div>
 
          <!-- Button to add or update the item -->
         <div>

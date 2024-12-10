@@ -18,6 +18,7 @@
                     <x-category-form
                         :action="route('categories.store')"
                         :method="'POST'"
+                        :items="$items"
                     />
 
                 </div>

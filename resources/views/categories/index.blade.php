@@ -4,21 +4,6 @@
             <h2 class="text-3xl font-extrabold text-gray-100 leading-tight">
                 {{ __('All Categories') }}
             </h2>
-
-            <!-- Search Bar Form -->
-            <form action="{{ route('categories.search') }}" method="GET" class="mt-4">
-                <div class="flex categories-center">
-                    <!-- Search input box -->
-                    <input type="text" name="search" value="{{ request()->input('search') }}"
-                        placeholder="Search categories..."
-                        class="w-full sm:w-1/2 p-2 rounded-lg bg-gray-800 text-gray-100 placeholder-gray-400 focus:outline-none focus:bg-gray-700" />
-                    <!-- Search button -->
-                    <button type="submit"
-                        class="ml-2 bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg">
-                        Search
-                    </button>
-                </div>
-            </form>
         </div>
     </x-slot>
 

@@ -46,14 +46,14 @@ class CategoryController extends Controller
         ]);
 
         //create category in database
-        Category::create([
+        $category = Category::create([
             'category_name' => $request->category_name,
             'description' => $request->description,
             'created_at' => now(),
             'updated_at' =>now()
         ]);
-
-        return to_route('category.index')->with('success', 'category created successfully!');
+        $category->items()->sync($request->items);
+        return to_route('categories.index')->with('success', 'category created successfully!');
     }
 
 
@@ -62,9 +62,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-
+        $items=$category->items();
         // Pass the authors to the 'authors.index' view
-        return view('categories.show', compact('category'));
+        return view('categories.show', compact('category'), compact('items'));
     }
 
     /**
@@ -72,7 +72,12 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit')->with('category', $category);
+        $items=Item::all();
+        //$category->load('items');
+        $categoryItems = $category->items->pluck('id')->toArray();
+
+        return view('categories.edit',compact('category','items', 'categoryItems'));
+
     }
 
     /**
@@ -80,12 +85,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'category_name' => 'required',
-            'description' => 'required|max:500',
+        $validated = $request->validate([
+          //  'name' => 'required|string|max:1000',
+
+
         ]);
 
-        $data = $request->only(['category_name', 'description']);
+        $category->update($request->except('items'));
+
+
+        $items = $request->items ?? [];
+
+        $category->items()->detach();
+
+        if (!empty($items)) {
+            $category->items()->attach($items);
+        }
+
+        return redirect()->route('categories.index')->with('success', 'Category updated Successfully');
     }
 
     /**
@@ -93,6 +110,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return to_route('categories.index')->with('success', 'Item deleted successfully!');
     }
 }

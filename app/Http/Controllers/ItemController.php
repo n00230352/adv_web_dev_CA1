@@ -122,6 +122,8 @@ class ItemController extends Controller
         return to_route('items.index')->with('success', 'Item deleted successfully!');
 
     }
+
+
     public function search(Request $request)
 {
     $search = $request->input('search'); // Get search query from the form

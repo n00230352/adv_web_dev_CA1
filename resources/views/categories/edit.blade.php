@@ -21,6 +21,8 @@
                     :action="route('categories.update', $category)"
                     :method="'PUT'"
                     :category="$category"
+                    :items="$items"
+                    :categoryItems="$categoryItems"
                     />
                 </div>
             </div>
