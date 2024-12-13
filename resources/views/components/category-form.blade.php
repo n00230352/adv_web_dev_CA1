@@ -59,7 +59,7 @@
     </div>
 
     <h3 class="font-semibold text-lg mb-4 pt-5">Assign this category to existing items</h3>
-        <div>
+        <div>  
             @foreach ($items as $item)
             <div>
                 <input type="checkbox" id="item_{{ $item->id }}" name="items[]" value="{{ $item->id }}"
