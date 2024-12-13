@@ -31,7 +31,8 @@
 
                                     {{-- Edit and delete the review --}}
                                     @if ($review->user->is(auth()->user()) || auth()->user()->role === 'admin')
-                                        <a href="{{ route('reviews.edit', $review) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300">
+                                        <a href="{{ route('reviews.edit', $review) }}"
+                                           class="bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded transition-colors duration-300">
                                             {{ __('Edit Review') }}
                                         </a>
                                         <form method="POST" action="{{ route('reviews.destroy', $review) }}" class="inline-block">
@@ -39,7 +40,7 @@
                                             @method('delete')
                                             <x-danger-button :href="route('reviews.destroy', $review)"
                                                              onclick="event.preventDefault(); this.closest('form').submit();"
-                                                             class="ml-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-300">
+                                                             class="ml-2 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded transition-colors duration-300">
                                                 {{ __('Delete Review') }}
                                             </x-danger-button>
                                         </form>
